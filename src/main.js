@@ -1,3 +1,6 @@
+
+import "./js/api";
+
 import "./js/hero";
 import "./js/books";
 import "./js/feedbacks";

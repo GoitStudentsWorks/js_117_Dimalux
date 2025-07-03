@@ -38,12 +38,8 @@ main:has(.back-link) {
   text-align: center;
 }
 
-/* html {
+ html {
   scroll-behavior: smooth;
-}
+} 
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #0e1823;
-  color: #fbfbfb;
-} */
+
