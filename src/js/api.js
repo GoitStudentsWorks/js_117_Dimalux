@@ -7,7 +7,7 @@ const BASE_URL = 'https://books-backend.p.goit.global/books';
 
  // Запит на список категорій книг 
 
-async function getCategoryList() {
+export async function getCategoryList() {
   try {
     const response = await axios.get(`${BASE_URL}/category-list`);
     console.log(response.data);
@@ -20,14 +20,14 @@ async function getCategoryList() {
 }
 
 // Для перевірки роботи функції
-getCategoryList();
+// getCategoryList();
 
 
 
 
 // Запит на популярні книги (топ книг) 
 
-async function getTopBooks() {
+export async function getTopBooks() {
   try {
     const response = await axios.get(`${BASE_URL}/top-books`);
     console.log(response.data);
@@ -39,13 +39,13 @@ async function getTopBooks() {
 }
 
 // Для перевірки роботи функції
-getTopBooks()
+// getTopBooks()
 
 
 
 //  Запит на книги певної категорії
  
-async function getBooksByCategory(category) {
+export async function getBooksByCategory(category) {
   try {
     const response = await axios.get(`${BASE_URL}/category`, {
       params: { category },
@@ -59,24 +59,25 @@ async function getBooksByCategory(category) {
 }
 
 // Для перевірки роботи функції
-getBooksByCategory("Hardcover Fiction");
+// getBooksByCategory("Hardcover Fiction");
 
 
 
 
 //  Запит на детальну інформацію про книгу за ID
 
-async function getBookDetails(bookId) {
+export async function getBookDetails(bookId) {
   try {
     const response = await axios.get(`${BASE_URL}/${bookId}`);
     console.log(response.data);
     return response.data;
   } catch (error) {
-    console.error('Помилка при отриманні деталей книги:', error);
+    console.error('Помилка при отриманні інформації про книгу книги:', error);
     return null;
   }
 }
 
 // Для перевірки роботи функції для різних ID
-getBookDetails('65fc3c9ca957e5c1ae05b6d3');
-getBookDetails('65fc3c9da957e5c1ae05b77c');
+// getBookDetails('65fc3c9ca957e5c1ae05b6d3');
+
+// getBookDetails('65fc3c9da957e5c1ae05b77c');
