@@ -1,0 +1,137 @@
+.section {
+    padding: 40px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.layout {
+    display: flex;
+    gap: 20px;
+}
+
+.filters {
+    list-style: none;
+    padding: 0;
+    min-width: 220px;
+}
+
+.filters li {
+    margin-bottom: 10px;
+}
+
+.filters button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+    color: #1c1c1c;
+}
+
+.books-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    flex-grow: 1;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.book-item {
+    background: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.book-item h4 {
+    font-size: 14px;
+    margin: 10px 0 4px;
+}
+
+.book-item p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.book-item .price {
+    font-weight: bold;
+    margin: 6px 0;
+}
+
+.book-item button {
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border: 1px solid #1c1c1c;
+    background: none;
+    cursor: pointer;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#show-more {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #1c1c1c;
+    background: none;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    border-radius: 8px;
+}
+
+.modal-content img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
