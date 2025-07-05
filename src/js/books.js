@@ -716,6 +716,7 @@ async function loadBooks() {
     debugLog('Error loading books:', error.message);
     isLoading = false;
 
+    // Try to use backup data as last resort
     if (!useBackupData) {
       debugLog('Attempting to use backup data');
       allBooks =
@@ -732,6 +733,7 @@ async function loadBooks() {
   }
 }
 
+// Update categories in sidebar
 async function updateCategoriesInSidebar() {
   try {
     debugLog('Updating categories in sidebar');
@@ -743,6 +745,7 @@ async function updateCategoriesInSidebar() {
       return;
     }
 
+    // Create new category buttons
     const categoryHTML = `
       <li><button class="category-btn active" data-category="all">All categories</button></li>
       ${fetchedCategories
@@ -756,6 +759,7 @@ async function updateCategoriesInSidebar() {
     categoriesContainer.innerHTML = categoryHTML;
     debugLog('Categories updated in sidebar');
 
+    // Add event listeners to new buttons
     const newCategoryButtons = document.querySelectorAll('.category-btn');
     newCategoryButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -767,6 +771,7 @@ async function updateCategoriesInSidebar() {
   }
 }
 
+// Handle category selection
 async function handleCategorySelect(category) {
   if (isLoading) {
     debugLog('Already loading, ignoring category selection');
@@ -777,6 +782,7 @@ async function handleCategorySelect(category) {
   currentCategory = category;
   visibleBooks = getInitialBookCount();
 
+  // Update active button
   document.querySelectorAll('.category-btn').forEach(btn => {
     btn.classList.remove('active');
     if (btn.dataset.category === category) {
@@ -787,6 +793,7 @@ async function handleCategorySelect(category) {
   await loadBooks();
 }
 
+// Handle show more button
 function handleShowMore() {
   if (isLoading) return;
 
@@ -796,6 +803,7 @@ function handleShowMore() {
   renderBooks();
 }
 
+// Handle learn more button
 async function handleLearnMore(bookId) {
   try {
     debugLog(`Learn more clicked for book: ${bookId}`);
@@ -806,6 +814,7 @@ async function handleLearnMore(bookId) {
       return;
     }
 
+    // Show modal with loading state
     modalContent.innerHTML =
       '<div style="text-align: center; padding: 40px; color: #0b0500;">Loading book details...</div>';
     modalOverlay.classList.add('active');
@@ -827,8 +836,10 @@ async function handleLearnMore(bookId) {
   }
 }
 
+// Make functions globally accessible for onclick handlers
 window.handleLearnMore = handleLearnMore;
 
+// Open book modal with detailed information
 function openBookModal(book) {
   const buyLinksHTML =
     book.buy_links && book.buy_links.length > 0
@@ -910,6 +921,7 @@ function openBookModal(book) {
   `;
 }
 
+// Close book modal
 function closeBookModal() {
   if (modalOverlay) {
     modalOverlay.classList.remove('active');
@@ -918,6 +930,7 @@ function closeBookModal() {
   document.body.style.overflow = '';
 }
 
+// Modal interaction functions
 function changeQuantity(delta) {
   const quantityInput = document.getElementById('quantity');
   if (quantityInput) {
@@ -937,6 +950,7 @@ function addToCart(bookId) {
 function buyNow(bookId) {
   const quantity = document.getElementById('quantity')?.value || 1;
   debugLog(`Buy now: ${quantity} of book ${bookId}`);
+  // TODO: Implement buy now functionality
   alert(`Proceeding to checkout with ${quantity} book(s)!`);
 }
 
@@ -959,12 +973,14 @@ function toggleAccordion(element) {
         }
       });
 
+      // Open the clicked item
       content.classList.add('active');
       icon.style.transform = 'rotate(180deg)';
     }
   }
 }
 
+// Add CSS for loading animation
 const style = document.createElement('style');
 style.textContent = `
   @keyframes pulse {
@@ -974,39 +990,45 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Event listeners for initial category buttons
 document.querySelectorAll('.category-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     handleCategorySelect(btn.dataset.category);
   });
 });
 
+// Add event listeners with null checks
 if (showMoreBtn) {
   showMoreBtn.addEventListener('click', handleShowMore);
 }
 
-// Modal event listeners
-if (modalClose) {
-  modalClose.addEventListener('click', closeBookModal);
-}
+// Modal event listeners - only add if modal elements exist and we're in books context
+if (modalClose && modalOverlay && document.querySelector('.books-section')) {
+  debugLog('Setting up modal event listeners');
 
-if (modalOverlay) {
+  modalClose.addEventListener('click', closeBookModal);
+
   modalOverlay.addEventListener('click', e => {
     if (e.target === modalOverlay) {
       closeBookModal();
     }
   });
+
+  // Close modal on Escape key - use a unique handler to avoid conflicts
+  const handleModalEscape = e => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+      closeBookModal();
+    }
+  };
+
+  document.addEventListener('keydown', handleModalEscape);
+} else {
+  debugLog(
+    'Modal elements not found or not in books context - skipping modal event listeners'
+  );
 }
 
-document.addEventListener('keydown', e => {
-  if (
-    e.key === 'Escape' &&
-    modalOverlay &&
-    modalOverlay.classList.contains('active')
-  ) {
-    closeBookModal();
-  }
-});
-
+// Handle responsive changes
 window.addEventListener('resize', () => {
   const newInitialCount = getInitialBookCount();
   const oldInitialCount = window.innerWidth <= 768 ? 24 : 10;
@@ -1018,6 +1040,7 @@ window.addEventListener('resize', () => {
   }
 });
 
+// Show API status indicator
 function showApiStatus(isWorking) {
   const countElement = document.querySelector('.count');
   if (countElement && useBackupData) {
@@ -1026,6 +1049,7 @@ function showApiStatus(isWorking) {
     countElement.title =
       'Using offline data - API server unavailable or blocked by CORS policy';
 
+    // Add visual indicator
     if (!countElement.querySelector('.offline-indicator')) {
       const indicator = document.createElement('span');
       indicator.className = 'offline-indicator';
@@ -1039,11 +1063,13 @@ function showApiStatus(isWorking) {
     countElement.style.fontWeight = 'normal';
     countElement.title = 'Live data from API';
 
+    // Remove offline indicator
     const indicator = countElement.querySelector('.offline-indicator');
     if (indicator) {
       indicator.remove();
     }
 
+    // Add online indicator
     if (!countElement.querySelector('.online-indicator')) {
       const indicator = document.createElement('span');
       indicator.className = 'online-indicator';
@@ -1052,6 +1078,7 @@ function showApiStatus(isWorking) {
       indicator.title = 'Live data';
       countElement.appendChild(indicator);
 
+      // Remove online indicator after 3 seconds
       setTimeout(() => {
         if (indicator.parentNode) {
           indicator.remove();
@@ -1061,6 +1088,7 @@ function showApiStatus(isWorking) {
   }
 }
 
+// Initialize the app
 document.addEventListener('DOMContentLoaded', async () => {
   debugLog('App initializing...');
 
@@ -1071,6 +1099,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.buyNow = buyNow;
   window.toggleAccordion = toggleAccordion;
 
+  // Start with mock data immediately for smooth UX
   allBooks = MOCK_BOOKS;
   useBackupData = true;
   visibleBooks = getInitialBookCount();
@@ -1080,10 +1109,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   debugLog('Attempting to load real data from API in background...');
 
+  // Try to load API data silently in background without blocking UI
   setTimeout(async () => {
     try {
       debugLog('Attempting background API data load...');
 
+      // Try to load categories and books silently - catch errors to prevent console spam
       const categoriesPromise = updateCategoriesInSidebar().catch(err => {
         debugLog(
           'Categories API failed silently (expected if API unavailable)'
@@ -1098,10 +1129,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       await Promise.allSettled([categoriesPromise, booksPromise]);
 
+      // Update status based on whether we got real data
       showApiStatus(!useBackupData);
 
       if (!useBackupData) {
         debugLog('Successfully loaded real data from API');
+        // Show brief success notification
         const notification = document.createElement('div');
         notification.style.cssText = `
           position: fixed;
