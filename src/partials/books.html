@@ -1,6 +1,8 @@
-        <section class="books-section">
-            <h1 class="visually-hidden">Trending books</h1>
+<main class="container">
+    <section class="books-section">
+        <h1 class="visually-hidden">Trending books</h1>
 
+        <div class="section-container">
             <div class="layout">
                 <aside class="sidebar">
                     <div class="sidebar-header">
@@ -54,8 +56,7 @@
                 </aside>
 
                 <div class="main-content">
-                    <ul class="book-list" id="book-list" role="list">
-                    </ul>
+                    <ul class="book-list" id="book-list" role="list"></ul>
 
                     <div class="pagination">
                         <button class="show-more-btn" id="show-more-btn" type="button">
@@ -64,15 +65,14 @@
                     </div>
                 </div>
             </div>
-
-        <div class="modal-overlay" id="modal-overlay" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal">
-                <button class="modal-close" id="modal-close" aria-label="Close modal">
-                    &times;
-                </button>
-                <div class="modal-content" id="modal-content">
-                </div>
-            </div>
         </div>
-
     </section>
+
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal">
+        <button class="modal-close" id="modal-close" aria-label="Close modal">
+            &times;
+        </button>
+        <div class="modal-content" id="modal-content"></div>
+    </div>
+</div>
