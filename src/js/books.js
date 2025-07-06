@@ -451,7 +451,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-window.handleLearnMore = handleLearnMore;
+//window.handleLearnMore = handleLearnMore;
 
 document.querySelectorAll('.category-btn').forEach(btn => {
   btn.addEventListener('click', () => {
