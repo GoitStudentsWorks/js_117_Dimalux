@@ -601,7 +601,6 @@ body {
         max-width: 600px;
         padding: 48px;
     }
-
     .modal-title {
         font-family: "Rubik", sans-serif;
         font-weight: 600;
@@ -611,13 +610,11 @@ body {
         text-align: center;
         color: #0b0500;
     }
-
     .modal-submit {
         width: 342px;
         margin: 0 auto;
         display: block;
     }
-
     .form-group {
         margin-bottom: 32px;
     }
