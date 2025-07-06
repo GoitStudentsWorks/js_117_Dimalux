@@ -8,6 +8,14 @@ const feedbacksSwiper = new Swiper('.feedbacks .swiper', {
 
     slidesPerView: 1,
     spaceBetween: 24,
+    breakpoints: {
+        768: {
+            slidesPerView: 2
+        },
+        1440: {
+            slidesPerView: 3
+        }
+    },
     navigation: {
         nextEl: ".feedbacks .swiper-button-next",
         prevEl: ".feedbacks .swiper-button-prev"
