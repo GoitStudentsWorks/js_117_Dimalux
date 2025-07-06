@@ -1,4 +1,3 @@
-// Import API functions
 import {
   getCategoryList,
   getTopBooks,
@@ -6,319 +5,13 @@ import {
   getBookDetails,
 } from './api.js';
 
-// Backup mock data in case API fails
-const MOCK_BOOKS = [
-  {
-    _id: '1',
-    title: 'I will find you',
-    author: 'Harlan Coben',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/be59079c942166f40b9f9b8ca0c95c9b0dd376cd?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A gripping thriller from bestselling author Harlan Coben.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '2',
-    title: 'Hello Beautiful',
-    author: 'Ann Napolitano',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/19b4f0571fe7d229818636954191ba15ff05696e?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A beautiful story about family, love, and resilience.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '3',
-    title: 'It starts with us',
-    author: 'Colleen Hoover',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/001f2a76a1b4620d1fb977b29164da216a346da5?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'The sequel to the bestselling romance novel.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '4',
-    title: 'Daisy Jones & The Six',
-    author: 'Taylor Jenkins Reid',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/9f8788ef7427aac176befc2418495a850e31f227?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: "A novel about a rock band's rise to fame in the 1970s.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '5',
-    title: 'Saver',
-    author: 'Benjamin Hall',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/98d2449870ec58a16c70ac2ab8a312374e6dcc62?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A non-fiction book about financial management and saving.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '6',
-    title: 'Spare',
-    author: 'Prince Harry',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/84191fe427cba5940c78d3b0b66c500d4f85379f?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: "Prince Harry's memoir about his life and experiences.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '7',
-    title: 'Paris The Memoir',
-    author: 'Paris Hilton',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/fddd368da72ad14deca914c44fc8fdc26589fe53?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: "Paris Hilton's personal memoir and life story.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '8',
-    title: 'The Courage to Be Free',
-    author: 'Ron DeSantis',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/95f91ea1698f095cdea11e73b64d9deedb74e1f1?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: "Political memoir and vision for America's future.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '9',
-    title: 'The body keeps the score',
-    author: 'Bessel van der Kolk',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/eb7283e734ea5c1a3e973593a98c1fb950720617?width=454',
-    list_name: 'Advice How-To and Miscellaneous',
-    description: 'A groundbreaking book about trauma and recovery.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '10',
-    title: 'Lessons in chemistry',
-    author: 'Bonnie Garmus',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/de8e5256a092a75663a70ebad4f598d410a983d3?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A novel about a female chemist in the 1960s.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  // Additional books to support desktop view (24+ books)
-  {
-    _id: '11',
-    title: 'Tomorrow and Tomorrow and Tomorrow',
-    author: 'Gabrielle Zevin',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/6c211f6ed1a913f6387ae2258abf662c77e44cc2?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A novel about friendship and gaming.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '12',
-    title: "I'm Glad My Mom Died",
-    author: 'Jennette McCurdy',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/9f6aea0fcc830497d46221f2aa67d6216f846a98?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A powerful memoir about childhood stardom and family.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '13',
-    title: 'The Seven Moons of Maali Almeida',
-    author: 'Shehan Karunatilaka',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/ea9008b04bd05c29b9958daf4cab7d5d8363b333?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A darkly funny afterlife adventure.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '14',
-    title: 'The Atlas Six',
-    author: 'Olivie Blake',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/09192c2b149378095a3df5dfdd9d768107deffe1?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A dark academic fantasy about six magicians.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '15',
-    title: 'Educated',
-    author: 'Tara Westover',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/05b647891df90004e53febfd626d7677f5b8bffd?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A memoir about education and family.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '16',
-    title: 'The Thursday Murder Club',
-    author: 'Richard Osman',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/85daae4642e37eb4d924fecc884c822a5cae8aa7?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A cozy mystery set in a retirement village.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '17',
-    title: 'Atomic Habits',
-    author: 'James Clear',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/7fb7e96835fecf1cb69394d3ef0630de77546b8d?width=454',
-    list_name: 'Advice How-To and Miscellaneous',
-    description: 'A guide to building good habits and breaking bad ones.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '18',
-    title: 'The Midnight Library',
-    author: 'Matt Haig',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/73d0b49530ac0a63445a67445297dd6a2a3d3329?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: "A novel about life's infinite possibilities.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '19',
-    title: 'Becoming',
-    author: 'Michelle Obama',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/9f6aea0fcc830497d46221f2aa67d6216f846a98?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: "The former First Lady's powerful memoir.",
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '20',
-    title: 'Where the Forest Meets the Stars',
-    author: 'Glendy Vanderah',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/23d519246fd0211e2aa3678be56181200ab72505?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A heartwarming story about healing and hope.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '21',
-    title: 'The Guest List',
-    author: 'Lucy Foley',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/4e88e224f5b21410964eeec848d75a9b2c5afcd6?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A psychological thriller set at a wedding.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '22',
-    title: 'Sapiens',
-    author: 'Yuval Noah Harari',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/52c3113b5cea70eef0a1226e0a9f66d7e0e7a026?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A brief history of humankind.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '23',
-    title: 'The Silent Patient',
-    author: 'Alex Michaelides',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/09b246cfd4ba727da8dd9a33b57fce06cf2c41bc?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A psychological thriller about a woman who refuses to speak.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '24',
-    title: 'The Power of Now',
-    author: 'Eckhart Tolle',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/e5d41e744e86169ba86dd2394676e58bcf728f24?width=454',
-    list_name: 'Advice How-To and Miscellaneous',
-    description: 'A guide to spiritual enlightenment.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '25',
-    title: 'Little Fires Everywhere',
-    author: 'Celeste Ng',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/be59079c942166f40b9f9b8ca0c95c9b0dd376cd?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A novel about family secrets and community tensions.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '26',
-    title: 'Untamed',
-    author: 'Glennon Doyle',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/19b4f0571fe7d229818636954191ba15ff05696e?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A memoir about breaking free from expectations.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '27',
-    title: 'The Vanishing Half',
-    author: 'Brit Bennett',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/001f2a76a1b4620d1fb977b29164da216a346da5?width=454',
-    list_name: 'Combined Print and E-book Fiction',
-    description: 'A novel about identity and family secrets.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-  {
-    _id: '28',
-    title: 'Born a Crime',
-    author: 'Trevor Noah',
-    book_image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/9f8788ef7427aac176befc2418495a850e31f227?width=454',
-    list_name: 'Combined Print & E-book Nonfiction',
-    description: 'A memoir about growing up in South Africa.',
-    buy_links: [{ name: 'Amazon', url: 'https://amazon.com' }],
-  },
-];
-
-const MOCK_CATEGORIES = [
-  {
-    name: 'Combined Print and E-book Fiction',
-    displayName: 'Combined Print and E-book Fiction',
-  },
-  {
-    name: 'Combined Print & E-book Nonfiction',
-    displayName: 'Combined Print & E-book Nonfiction',
-  },
-  { name: 'Hardcover Fiction', displayName: 'Hardcover Fiction' },
-  { name: 'Paperback Trade Fiction', displayName: 'Paperback Trade Fiction' },
-  { name: 'Paperback Nonfiction', displayName: 'Paperback Nonfiction' },
-  {
-    name: 'Advice How-To and Miscellaneous',
-    displayName: 'Advice, How-To and Miscellaneous',
-  },
-  {
-    name: "Children's Middle Grade Hardcover",
-    displayName: "Children's Middle Grade Hardcover",
-  },
-];
 
 // Application state
 let currentCategory = 'all';
 let visibleBooks = window.innerWidth <= 768 ? 10 : 24;
 let booksPerLoad = 4;
 let allBooks = [];
-let categories = MOCK_CATEGORIES;
+let categories = [];
 let isLoading = false;
 let useBackupData = false;
 
@@ -333,24 +26,6 @@ const showMoreBtn = document.getElementById('show-more-btn');
 const showingCount = document.getElementById('showing-count');
 const totalCount = document.getElementById('total-count');
 const categoryButtons = document.querySelectorAll('.category-btn');
-const modalOverlay = document.getElementById('modal-overlay');
-const modalClose = document.getElementById('modal-close');
-const modalContent = document.getElementById('modal-content');
-
-// Debug modal elements
-debugLog('Modal elements check:', {
-  modalOverlay: !!modalOverlay,
-  modalClose: !!modalClose,
-  modalContent: !!modalContent,
-});
-
-if (!modalOverlay || !modalClose || !modalContent) {
-  debugLog('ERROR: Missing modal elements!', {
-    modalOverlay: !!modalOverlay,
-    modalClose: !!modalClose,
-    modalContent: !!modalContent,
-  });
-}
 
 // Debug logging
 function debugLog(message, data = null) {
@@ -405,14 +80,13 @@ async function fetchCategories() {
       throw new Error('No valid categories found in API response');
     }
   } catch (error) {
-    debugLog('Categories API failed, using backup data:', error.message);
-    categories = MOCK_CATEGORIES;
+    debugLog('Categories API failed:', error.message);
+    categories = [];
     useBackupData = true;
     return categories;
   }
 }
 
-// Fetch top books with fallback
 async function fetchTopBooks() {
   try {
     debugLog('Fetching top books...');
@@ -421,13 +95,11 @@ async function fetchTopBooks() {
     debugLog('Is array?', Array.isArray(data));
     debugLog('Data length:', data ? data.length : 'null/undefined');
 
-    // Handle different possible response structures
     let books = [];
 
     if (Array.isArray(data) && data.length > 0) {
       debugLog('Processing array response...');
 
-      // Check if it's an array of category groups (original expectation)
       if (data[0] && data[0].books && Array.isArray(data[0].books)) {
         debugLog('Found category groups with books arrays');
         data.forEach(categoryGroup => {
@@ -446,7 +118,6 @@ async function fetchTopBooks() {
           }
         });
       }
-      // Check if it's a direct array of books
       else if (data[0] && (data[0]._id || data[0].id) && data[0].title) {
         debugLog('Found direct array of books');
         books = data.map(book => ({
@@ -462,11 +133,9 @@ async function fetchTopBooks() {
         debugLog('Unknown array structure:', data[0]);
       }
     }
-    // Handle single object response
     else if (data && typeof data === 'object' && !Array.isArray(data)) {
       debugLog('Processing object response...');
 
-      // Check if object has a books property
       if (data.books && Array.isArray(data.books)) {
         debugLog('Found books array in object');
         books = data.books.map(book => ({
@@ -479,7 +148,6 @@ async function fetchTopBooks() {
           buy_links: book.buy_links || [],
         }));
       }
-      // Check if it's a single book object
       else if (data.title) {
         debugLog('Found single book object');
         books = [
@@ -505,13 +173,12 @@ async function fetchTopBooks() {
       throw new Error('No valid books found in API response');
     }
   } catch (error) {
-    debugLog('Top books API failed, using backup data:', error.message);
+    debugLog('Top books API failed:', error.message);
     useBackupData = true;
-    return MOCK_BOOKS;
+    return [];
   }
 }
 
-// Fetch books by category with fallback
 async function fetchBooksByCategory(category) {
   try {
     debugLog(`Fetching books for category: ${category}`);
@@ -558,12 +225,10 @@ async function fetchBooksByCategory(category) {
       `Category books API failed for ${category}, using filtered backup data:`,
       error.message
     );
-    // Filter backup data by category
-    return MOCK_BOOKS.filter(book => book.list_name === category);
+    return [];
   }
 }
 
-// Fetch detailed book information with fallback
 async function fetchBookDetails(bookId) {
   try {
     debugLog(`Fetching details for book: ${bookId}`);
@@ -580,16 +245,10 @@ async function fetchBookDetails(bookId) {
       `Book details API failed for ${bookId}, using backup data:`,
       error.message
     );
-    // Find book in current allBooks array or mock data
-    return (
-      allBooks.find(book => book._id === bookId) ||
-      MOCK_BOOKS.find(book => book._id === bookId) ||
-      null
-    );
+    return allBooks.find(book => book._id === bookId) || null;
   }
 }
 
-// Create book item HTML
 function createBookItem(book) {
   const displayPrice = 'Check Price';
   const imageUrl =
@@ -620,7 +279,6 @@ function createBookItem(book) {
   `;
 }
 
-// Create loading skeleton
 function createLoadingSkeleton() {
   return `
     <li class="book-item">
@@ -639,7 +297,6 @@ function createLoadingSkeleton() {
   `;
 }
 
-// Filter books by category
 function getFilteredBooks() {
   if (currentCategory === 'all') {
     return allBooks;
@@ -647,7 +304,6 @@ function getFilteredBooks() {
   return allBooks.filter(book => book.list_name === currentCategory);
 }
 
-// Show loading state
 function showLoading() {
   isLoading = true;
   const skeletonCount = window.innerWidth <= 768 ? 10 : 24;
@@ -658,7 +314,6 @@ function showLoading() {
   debugLog('Showing loading state');
 }
 
-// Render books to the list
 function renderBooks() {
   if (isLoading) {
     debugLog('Still loading, skipping render');
@@ -679,11 +334,9 @@ function renderBooks() {
     bookList.innerHTML = booksToShow.map(book => createBookItem(book)).join('');
   }
 
-  // Update counters
   showingCount.textContent = booksToShow.length;
   totalCount.textContent = filteredBooks.length;
 
-  // Show/hide "Show More" button
   if (booksToShow.length >= filteredBooks.length) {
     showMoreBtn.classList.add('hidden');
   } else {
@@ -693,7 +346,6 @@ function renderBooks() {
   showMoreBtn.disabled = false;
 }
 
-// Load books based on current category
 async function loadBooks() {
   debugLog(`Loading books for category: ${currentCategory}`);
   showLoading();
@@ -716,24 +368,15 @@ async function loadBooks() {
     debugLog('Error loading books:', error.message);
     isLoading = false;
 
-    // Try to use backup data as last resort
-    if (!useBackupData) {
-      debugLog('Attempting to use backup data');
-      allBooks =
-        currentCategory === 'all'
-          ? MOCK_BOOKS
-          : MOCK_BOOKS.filter(book => book.list_name === currentCategory);
-      useBackupData = true;
-      renderBooks();
-    } else {
-      bookList.innerHTML =
-        '<li style="grid-column: 1/-1; text-align: center; padding: 40px; color: #0b0500;">Unable to load books. Please check your internet connection and try again.</li>';
+    isLoading = false;
+    bookList.innerHTML =
+      '<li style="grid-column: 1/-1; text-align: center; padding: 40px; color: #0b0500;">Unable to load books. Please check your internet connection and try again.</li>';
+    if (showMoreBtn) {
       showMoreBtn.classList.add('hidden');
     }
   }
 }
 
-// Update categories in sidebar
 async function updateCategoriesInSidebar() {
   try {
     debugLog('Updating categories in sidebar');
@@ -745,7 +388,6 @@ async function updateCategoriesInSidebar() {
       return;
     }
 
-    // Create new category buttons
     const categoryHTML = `
       <li><button class="category-btn active" data-category="all">All categories</button></li>
       ${fetchedCategories
@@ -759,7 +401,6 @@ async function updateCategoriesInSidebar() {
     categoriesContainer.innerHTML = categoryHTML;
     debugLog('Categories updated in sidebar');
 
-    // Add event listeners to new buttons
     const newCategoryButtons = document.querySelectorAll('.category-btn');
     newCategoryButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -771,7 +412,6 @@ async function updateCategoriesInSidebar() {
   }
 }
 
-// Handle category selection
 async function handleCategorySelect(category) {
   if (isLoading) {
     debugLog('Already loading, ignoring category selection');
@@ -793,7 +433,6 @@ async function handleCategorySelect(category) {
   await loadBooks();
 }
 
-// Handle show more button
 function handleShowMore() {
   if (isLoading) return;
 
@@ -803,184 +442,6 @@ function handleShowMore() {
   renderBooks();
 }
 
-// Handle learn more button
-async function handleLearnMore(bookId) {
-  try {
-    debugLog(`Learn more clicked for book: ${bookId}`);
-
-    // Check if modal elements exist
-    if (!modalOverlay || !modalContent) {
-      debugLog('Modal elements not found!');
-      return;
-    }
-
-    // Show modal with loading state
-    modalContent.innerHTML =
-      '<div style="text-align: center; padding: 40px; color: #0b0500;">Loading book details...</div>';
-    modalOverlay.classList.add('active');
-    modalOverlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    const bookDetails = await fetchBookDetails(bookId);
-
-    if (bookDetails) {
-      openBookModal(bookDetails);
-    } else {
-      modalContent.innerHTML =
-        '<div style="text-align: center; padding: 40px; color: #0b0500;">Error loading book details.</div>';
-    }
-  } catch (error) {
-    debugLog('Error loading book details:', error.message);
-    modalContent.innerHTML =
-      '<div style="text-align: center; padding: 40px; color: #0b0500;">Error loading book details.</div>';
-  }
-}
-
-// Make functions globally accessible for onclick handlers
-window.handleLearnMore = handleLearnMore;
-
-// Open book modal with detailed information
-function openBookModal(book) {
-  const buyLinksHTML =
-    book.buy_links && book.buy_links.length > 0
-      ? book.buy_links
-          .map(
-            link =>
-              `<a href="${link.url}" target="_blank" rel="noopener noreferrer" style="color: #e15d05; margin-right: 12px;">${link.name}</a>`
-          )
-          .join('')
-      : 'Available at major book retailers';
-
-  modalContent.innerHTML = `
-    <img
-      class="modal-book-image"
-      src="${book.book_image || 'https://via.placeholder.com/309x467?text=No+Image'}"
-      alt="${book.title} by ${book.author}"
-      onerror="this.src='https://via.placeholder.com/309x467?text=No+Image'"
-    />
-    <div class="modal-book-details">
-      <div class="modal-product-info">
-        <div class="modal-product-name">
-          <h3 class="modal-book-title">${book.title}</h3>
-          <p class="modal-book-author">${book.author}</p>
-          <div class="modal-book-price">Check Price</div>
-        </div>
-
-        <div class="modal-form">
-          <div class="modal-quantity">
-            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-            <input type="number" class="quantity-input" id="quantity" value="1" min="1" readonly>
-            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-          </div>
-
-          <div class="modal-cart-buttons">
-            <button class="cart-btn primary" onclick="addToCart('${book._id}')">Add To Cart</button>
-            <button class="cart-btn secondary" onclick="buyNow('${book._id}')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-accordion">
-        <div class="accordion-item">
-          <div class="accordion-header" onclick="toggleAccordion(this)">
-            <h4 class="accordion-title">Details</h4>
-            <svg class="accordion-icon" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6023 9.36791C11.822 9.14823 12.1781 9.14823 12.3978 9.36791L18.1326 15.1028C18.3523 15.3225 18.3523 15.6786 18.1326 15.8982L17.8674 16.1634C17.6478 16.3831 17.2916 16.3831 17.0719 16.1634L12 11.0915L6.92808 16.1634C6.7084 16.3831 6.3523 16.3831 6.13263 16.1634L5.86743 15.8982C5.64775 15.6786 5.64775 15.3225 5.86743 15.1028L11.6023 9.36791Z" fill="#0B0500"/>
-            </svg>
-          </div>
-          <div class="accordion-content">
-            ${book.description || 'I Will Find You is a gripping thriller by the master of suspense, Harlan Coben. The story follows David Burroughs, a former prisoner wrongfully convicted of murdering his own son. When he discovers a clue suggesting his son might still be alive, David escapes from prison to uncover the truth. Fast-paced, emotional, and full of unexpected twists — this novel will keep you hooked until the very last page.'}
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-header" onclick="toggleAccordion(this)">
-            <h4 class="accordion-title">Shipping</h4>
-            <svg class="accordion-icon" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6023 9.36784C11.822 9.14817 12.1781 9.14817 12.3978 9.36784L18.1326 15.1027C18.3523 15.3224 18.3523 15.6785 18.1326 15.8982L17.8674 16.1634C17.6478 16.383 17.2916 16.383 17.0719 16.1634L12 11.0914L6.92808 16.1634C6.7084 16.383 6.3523 16.383 6.13263 16.1634L5.86743 15.8982C5.64775 15.6785 5.64775 15.3224 5.86743 15.1027L11.6023 9.36784Z" fill="#0B0500"/>
-            </svg>
-          </div>
-          <div class="accordion-content">
-            We ship across the United States within 2–5 business days. All orders are processed through USPS or a reliable courier service. Enjoy free standard shipping on orders over $50.
-          </div>
-        </div>
-
-        <div class="accordion-item">
-          <div class="accordion-header" onclick="toggleAccordion(this)">
-            <h4 class="accordion-title">Returns</h4>
-            <svg class="accordion-icon" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6023 9.36784C11.822 9.14817 12.1781 9.14817 12.3978 9.36784L18.1326 15.1027C18.3523 15.3224 18.3523 15.6785 18.1326 15.8982L17.8674 16.1634C17.6478 16.383 17.2916 16.383 17.0719 16.1634L12 11.0914L6.92808 16.1634C6.7084 16.383 6.3523 16.383 6.13263 16.1634L5.86743 15.8982C5.64775 15.6785 5.64775 15.3224 5.86743 15.1027L11.6023 9.36784Z" fill="#0B0500"/>
-            </svg>
-          </div>
-          <div class="accordion-content">
-            You can return an item within 14 days of receiving your order, provided it hasn't been used and is in its original condition. To start a return, please contact our support team — we'll guide you through the process quickly and hassle-free.
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// Close book modal
-function closeBookModal() {
-  if (modalOverlay) {
-    modalOverlay.classList.remove('active');
-    modalOverlay.setAttribute('aria-hidden', 'true');
-  }
-  document.body.style.overflow = '';
-}
-
-// Modal interaction functions
-function changeQuantity(delta) {
-  const quantityInput = document.getElementById('quantity');
-  if (quantityInput) {
-    const currentValue = parseInt(quantityInput.value) || 1;
-    const newValue = Math.max(1, currentValue + delta);
-    quantityInput.value = newValue;
-  }
-}
-
-function addToCart(bookId) {
-  const quantity = document.getElementById('quantity')?.value || 1;
-  debugLog(`Adding ${quantity} of book ${bookId} to cart`);
-  // TODO: Implement cart functionality
-  alert(`Added ${quantity} book(s) to cart!`);
-}
-
-function buyNow(bookId) {
-  const quantity = document.getElementById('quantity')?.value || 1;
-  debugLog(`Buy now: ${quantity} of book ${bookId}`);
-  // TODO: Implement buy now functionality
-  alert(`Proceeding to checkout with ${quantity} book(s)!`);
-}
-
-function toggleAccordion(element) {
-  const content = element.nextElementSibling;
-  const icon = element.querySelector('.accordion-icon');
-
-  if (content && icon) {
-    if (content.classList.contains('active')) {
-      content.classList.remove('active');
-      icon.style.transform = 'rotate(0deg)';
-    } else {
-      // Close all other accordion items first
-      document.querySelectorAll('.accordion-content.active').forEach(item => {
-        item.classList.remove('active');
-        const itemIcon =
-          item.previousElementSibling?.querySelector('.accordion-icon');
-        if (itemIcon) {
-          itemIcon.style.transform = 'rotate(0deg)';
-        }
-      });
-
-      // Open the clicked item
-      content.classList.add('active');
-      icon.style.transform = 'rotate(180deg)';
-    }
-  }
-}
-
-// Add CSS for loading animation
 const style = document.createElement('style');
 style.textContent = `
   @keyframes pulse {
@@ -990,57 +451,28 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Event listeners for initial category buttons
+window.handleLearnMore = handleLearnMore;
+
 document.querySelectorAll('.category-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     handleCategorySelect(btn.dataset.category);
   });
 });
 
-// Add event listeners with null checks
 if (showMoreBtn) {
   showMoreBtn.addEventListener('click', handleShowMore);
 }
 
-// Modal event listeners - only add if modal elements exist and we're in books context
-if (modalClose && modalOverlay && document.querySelector('.books-section')) {
-  debugLog('Setting up modal event listeners');
-
-  modalClose.addEventListener('click', closeBookModal);
-
-  modalOverlay.addEventListener('click', e => {
-    if (e.target === modalOverlay) {
-      closeBookModal();
-    }
-  });
-
-  // Close modal on Escape key - use a unique handler to avoid conflicts
-  const handleModalEscape = e => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-      closeBookModal();
-    }
-  };
-
-  document.addEventListener('keydown', handleModalEscape);
-} else {
-  debugLog(
-    'Modal elements not found or not in books context - skipping modal event listeners'
-  );
-}
-
-// Handle responsive changes
 window.addEventListener('resize', () => {
   const newInitialCount = getInitialBookCount();
   const oldInitialCount = window.innerWidth <= 768 ? 24 : 10;
 
-  // Only reset if switching between mobile/desktop and currently showing initial count
   if (visibleBooks === oldInitialCount) {
     visibleBooks = newInitialCount;
     renderBooks();
   }
 });
 
-// Show API status indicator
 function showApiStatus(isWorking) {
   const countElement = document.querySelector('.count');
   if (countElement && useBackupData) {
@@ -1049,7 +481,6 @@ function showApiStatus(isWorking) {
     countElement.title =
       'Using offline data - API server unavailable or blocked by CORS policy';
 
-    // Add visual indicator
     if (!countElement.querySelector('.offline-indicator')) {
       const indicator = document.createElement('span');
       indicator.className = 'offline-indicator';
@@ -1063,13 +494,11 @@ function showApiStatus(isWorking) {
     countElement.style.fontWeight = 'normal';
     countElement.title = 'Live data from API';
 
-    // Remove offline indicator
     const indicator = countElement.querySelector('.offline-indicator');
     if (indicator) {
       indicator.remove();
     }
 
-    // Add online indicator
     if (!countElement.querySelector('.online-indicator')) {
       const indicator = document.createElement('span');
       indicator.className = 'online-indicator';
@@ -1078,7 +507,6 @@ function showApiStatus(isWorking) {
       indicator.title = 'Live data';
       countElement.appendChild(indicator);
 
-      // Remove online indicator after 3 seconds
       setTimeout(() => {
         if (indicator.parentNode) {
           indicator.remove();
@@ -1088,82 +516,180 @@ function showApiStatus(isWorking) {
   }
 }
 
-// Initialize the app
 document.addEventListener('DOMContentLoaded', async () => {
   debugLog('App initializing...');
 
-  // Make functions globally accessible for onclick handlers
-  window.handleLearnMore = handleLearnMore;
-  window.changeQuantity = changeQuantity;
-  window.addToCart = addToCart;
-  window.buyNow = buyNow;
-  window.toggleAccordion = toggleAccordion;
+  debugLog('Starting with API-only approach...');
 
-  // Start with mock data immediately for smooth UX
-  allBooks = MOCK_BOOKS;
-  useBackupData = true;
-  visibleBooks = getInitialBookCount();
-  renderBooks();
-  showApiStatus(false);
-  debugLog('Initial render with mock data complete');
+  showLoading();
+  debugLog('Showing loading state, attempting API calls...');
 
-  debugLog('Attempting to load real data from API in background...');
-
-  // Try to load API data silently in background without blocking UI
   setTimeout(async () => {
     try {
-      debugLog('Attempting background API data load...');
+      debugLog('Testing API connectivity...');
 
-      // Try to load categories and books silently - catch errors to prevent console spam
-      const categoriesPromise = updateCategoriesInSidebar().catch(err => {
-        debugLog(
-          'Categories API failed silently (expected if API unavailable)'
-        );
-        return null;
-      });
+      const testUrls = [
+        'https://books-backend.p.goit.global/books/category-list',
+        'https://books-backend.p.goit.global/category-list',
+        'https://books-backend.p.goit.global/api/books/category-list',
+        'https://books-backend.p.goit.global/api/category-list',
+      ];
 
-      const booksPromise = loadBooks().catch(err => {
-        debugLog('Books API failed silently (expected if API unavailable)');
-        return null;
-      });
+      let response = null;
+      let workingUrl = null;
 
-      await Promise.allSettled([categoriesPromise, booksPromise]);
+      for (const testUrl of testUrls) {
+        debugLog('Testing fetch to:', testUrl);
+        try {
+          response = await fetch(testUrl, {
+            method: 'GET',
+            mode: 'cors',
+            headers: {
+              Accept: 'application/json',
+            },
+          });
 
-      // Update status based on whether we got real data
-      showApiStatus(!useBackupData);
-
-      if (!useBackupData) {
-        debugLog('Successfully loaded real data from API');
-        // Show brief success notification
-        const notification = document.createElement('div');
-        notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: #28a745;
-          color: white;
-          padding: 12px 16px;
-          border-radius: 4px;
-          font-size: 14px;
-          z-index: 1000;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        `;
-        notification.textContent = 'Loaded live data from API';
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.remove();
+          if (response.ok) {
+            workingUrl = testUrl;
+            debugLog('Found working URL:', workingUrl);
+            break;
           }
-        }, 3000);
+        } catch (error) {
+          debugLog(`Failed to fetch ${testUrl}:`, error.message);
+        }
+      }
+
+      if (!workingUrl || !response) {
+        throw new Error('All API endpoints failed - server unreachable');
+      }
+
+      debugLog('Fetch response status:', response.status);
+
+      if (response.ok) {
+        const data = await response.json();
+        debugLog('Direct fetch successful, data:', data);
+
+        debugLog('Direct fetch worked, trying API functions...');
+
+        const categories = await getCategoryList();
+        const books = await getTopBooks();
+
+        debugLog('API functions results:', { categories, books });
+
+        if (Array.isArray(books) && books.length > 0) {
+          debugLog('Processing API books data...');
+
+          let processedBooks = [];
+
+          if (books[0] && books[0].books) {
+            // Handle grouped format
+            books.forEach(group => {
+              if (group.books && Array.isArray(group.books)) {
+                group.books.forEach(book => {
+                  processedBooks.push({
+                    _id: book._id,
+                    title: book.title,
+                    author: book.author,
+                    book_image: book.book_image,
+                    list_name: group.list_name,
+                    description: book.description || '',
+                    buy_links: book.buy_links || [],
+                  });
+                });
+              }
+            });
+          } else if (books[0] && books[0].title) {
+            // Handle direct array format
+            processedBooks = books.map(book => ({
+              _id: book._id,
+              title: book.title,
+              author: book.author,
+              book_image: book.book_image,
+              list_name: book.list_name || 'General',
+              description: book.description || '',
+              buy_links: book.buy_links || [],
+            }));
+          }
+
+          if (processedBooks.length > 0) {
+            debugLog(
+              `Successfully processed ${processedBooks.length} books from API!`
+            );
+            allBooks = processedBooks;
+            useBackupData = false;
+            isLoading = false;
+            renderBooks();
+            showApiStatus(true);
+
+            // Show success notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+              position: fixed;
+              top: 20px;
+              right: 20px;
+              background: #28a745;
+              color: white;
+              padding: 12px 16px;
+              border-radius: 4px;
+              font-size: 14px;
+              z-index: 1000;
+              box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            `;
+            notification.textContent =
+              'Successfully loaded live data from API! ✓';
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.remove();
+              }
+            }, 5000);
+          } else {
+            throw new Error('No books processed from API');
+          }
+        } else {
+          throw new Error('No books returned from API');
+        }
       } else {
-        debugLog('Continuing with offline data (API unavailable)');
+        debugLog('Fetch failed with status:', response.status);
+        throw new Error(`HTTP ${response.status}`);
       }
     } catch (error) {
-      debugLog('Background API loading failed:', error.message);
+      debugLog('API failed completely:', error.message);
+
+      isLoading = false;
+      bookList.innerHTML = `
+        <li style="grid-column: 1/-1; text-align: center; padding: 40px; color: #0b0500;">
+          <h3>Unable to load books</h3>
+          <p>API connection failed: ${error.message}</p>
+          <p>Please check your internet connection and try refreshing the page.</p>
+        </li>
+      `;
       showApiStatus(false);
+
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      `;
+      notification.textContent = 'API connection failed - no data available';
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 8000);
     }
-  }, 2000);
+  }, 500);
 
   debugLog('App initialization complete');
 });
