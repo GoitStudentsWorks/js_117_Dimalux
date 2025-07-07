@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #fcfbe6;
+  color: #0b0500;
+}
+
+.booksy-section {
+  padding: 20px 16px;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.booksy-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.booksy-text {
+  width: 100%;
+}
+
+.booksy-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.booksy-text p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.booksy-image {
+  width: 100%;
+}
+
+.booksy-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Tablet (≥ 768px) */
+@media (min-width: 768px) {
+  .booksy-section {
+    padding: 40px 20px;
+  }
+
+  .booksy-content {
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .booksy-text h1 {
+    font-size: 24px;
+  }
+
+  .booksy-text p {
+    font-size: 15px;
+  }
+
+  .booksy-text {
+    flex: 1;
+  }
+
+  .booksy-image {
+    flex: 1;
+  }
+}
+
+/* Desktop (≥ 1440px) */
+@media (min-width: 1440px) {
+  .booksy-text h1 {
+    font-size: 28px;
+  }
+
+  .booksy-text p {
+    font-size: 16px;
+    max-width: 600px;
+  }
+
+  .booksy-photo {
+    border-radius: 12px;
+  }
+}
