@@ -3,26 +3,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 14px 20px;
-  max-width: 1440px;
+  max-width: 1440px;*/
   margin: 0 auto;
 }
-
 /* Основное меню скрыто на мобиле */
 .nav-list {
   display: none;
 }
-
 .burger-btn {
   padding: 0;
   border: none;
   background-color: transparent;
   cursor: pointer;
 }
-
 .burger-icon {
   fill: #0b0500;
 }
-
 /* ------ Мобильное меню ------ */
 .mobile-menu {
   position: fixed;
@@ -40,14 +36,12 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-
 /* Плавное появление меню */
 .mobile-menu.is-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-
 /* Контейнер для меню */
 .mobile-menu-container {
   display: flex;
@@ -56,18 +50,15 @@
   padding: 16px 20px;
   height: 100%;
 }
-
 /* Хедер мобильного меню: логотип + крест */
 .mobile-menu-header {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
 }
-
 .mobile-menu-header .header-logo {
   display: block;
 }
-
 /* Крестик с отступом справа от логотипа */
 .close-btn {
   background: none;
@@ -77,13 +68,11 @@
   padding: 8px;
   margin-left: 211px;
 }
-
 @media (max-width: 430px) {
   .close-btn {
     margin-left: auto;
   }
 }
-
 /* Ссылки мобильного меню */
 .mobile-nav-list {
   display: flex;
@@ -93,7 +82,6 @@
   padding: 0;
   list-style: none;
 }
-
 .mobile-nav-link {
   font-size: 18px;
   font-weight: 500;
@@ -102,7 +90,6 @@
   border-bottom: 1px solid #e0e0e0;
   padding: 12px 0;
 }
-
 /* --- Tablet --- */
 @media screen and (min-width: 768px) {
   .header-container {
@@ -134,7 +121,6 @@
     padding: 16px 32px;
   }
 }
-
 /* --- Desktop --- */
 @media screen and (min-width: 1440px) {
   .header-container {
