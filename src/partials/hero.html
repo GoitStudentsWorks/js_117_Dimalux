@@ -1,9 +1,10 @@
 <section class="hero">
     <div class="container hero-container">
         <div class="hero-swiper-box">
-            <ul class="swiper swiper-gallery" id="hero-swiper">
-                <!-- Слайди підставляються з JS -->
-            </ul>
+            <div class="swiper swiper-gallery">
+                <ul class="swiper-wrapper" id="hero-swiper">
+                </ul>
+            </div>
             <div class="hero-overlay">
                 <p class="hero-subtitle">Get 10% off your first order</p>
                 <a class="hero-btn" href="#books">Shop Now!</a>
@@ -14,8 +15,14 @@
         <div class="hero-title-box">
             <h1 class="hero-title">Discover Your Next Great Read Today!</h1>
             <div class="hero-swiper-buttons">
-                <button class="swiper-btn prev" aria-label="Previous slide">←</button>
-                <button class="swiper-btn next" aria-label="Next slide">→</button>
+                <button class="swiper-btn prev" aria-label="Previous slide">
+                    <svg class="arrows" width="14" height="14">
+                        <use href="/img/icons/icons.svg#arrow-left"></use>
+                    </svg>
+                </button>
+                <button class="swiper-btn next" aria-label="Next slide"><svg class="arrows" width="14" height="14">
+                        <use href="/img/icons/icons.svg#arrow-right"></use>
+                    </svg></button>
             </div>
         </div>
     </div>
