@@ -1,0 +1,249 @@
+/* ---------- Hero ---------- */
+
+.hero {
+  margin: 0 auto 32px;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ---------- Заголовок + кнопки ---------- */
+
+.hero-title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-title-box {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .hero-title-box {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+.hero-title {
+  width: 100%;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #0b0500;
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-title {
+    width: 560px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .hero-title {
+    width: 1168px;
+    font-size: 52px;
+  }
+}
+
+/* ---------- Кнопки прокрутки ---------- */
+.hero-swiper-buttons {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-swiper-buttons {
+    display: flex;
+    gap: 24px;
+  }
+}
+
+.swiper-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(11, 5, 0, 0.15);
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #e15d05;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-btn:hover,
+.swiper-btn:focus {
+  background-color: #fceee6;
+}
+
+.swiper-btn.active {
+  background-color: #5a2502;
+}
+
+.swiper-btn.disabled {
+  background-color: #e15d05;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.arrows {
+  fill: #0b0500;
+}
+
+/* ---------- Слайдер ---------- */
+
+.hero-swiper-box {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-swiper-box {
+    border-radius: none;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .hero-swiper-box {
+    border-radius: 16px;
+  }
+}
+.swiper-slide {
+  position: relative;
+}
+
+.swiper-gallery {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-gallery {
+    border-radius: none;
+    /* width: 704px; */
+    height: 274px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .swiper-gallery {
+    /* width: 1312px; */
+    height: 395px;
+  }
+}
+.hero-slide-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ---------- Overlay ---------- */
+
+.hero-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-overlay {
+    bottom: 32px;
+    left: 40px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .hero-overlay {
+    bottom: 56px;
+    left: 56px;
+  }
+}
+
+.hero-subtitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #fff;
+  width: 100%;
+  max-width: 228px;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-subtitle {
+    width: 100%;
+    min-width: 350px;
+    line-height: 1.2;
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .hero-subtitle {
+    width: 100%;
+    max-width: 520px;
+    font-size: 52px;
+  }
+}
+
+.hero-btn {
+  display: inline-block;
+  border: 0.52px solid #e15d05;
+  border-radius: 2px;
+  padding: 4px 10px;
+  width: 117px;
+  height: 20px;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.5;
+  color: #fff;
+  background-color: #e15d05;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover,
+.hero-btn:focus {
+  background-color: #ea8d50;
+  border: 1px solid #0b0500;
+}
+
+@media screen and (min-width: 768px) {
+  .hero-btn {
+    border: 1px solid #e15d05;
+    border-radius: 4px;
+    padding: 4px 20px;
+    width: 164px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .hero-btn {
+    padding: 8px 20px;
+    width: 227px;
+    height: 40px;
+  }
+}
