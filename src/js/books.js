@@ -155,82 +155,26 @@ async function initBooks() {
 }
 // #endregion
 
-async function handleCategoryChange(selectedCategory, buttonElement = null) {
-  disableCategoryButtons();
-
-
-  categoryButtons.forEach(btn => btn.classList.remove('active'));
-  if (buttonElement) {
-    buttonElement.classList.add('active');
-  } else {
-
-    const matchingBtn = Array.from(categoryButtons).find(
-      btn => btn.getAttribute('data-category') === selectedCategory
-    );
-    if (matchingBtn) {
-      matchingBtn.classList.add('active');
-    }
-  }
-
-
-  dropdownItems.forEach(item => item.classList.remove('active'));
-  const matchingDropdownItem = Array.from(dropdownItems).find(
-    item => item.getAttribute('data-category') === selectedCategory
-  );
-  if (matchingDropdownItem) {
-    matchingDropdownItem.classList.add('active');
-    dropdownText.textContent = matchingDropdownItem.textContent;
-  }
-
-  bookList.innerHTML = '';
-  currentIndex = 0;
-  isInitialRender = true;
-
-  if (selectedCategory === 'all') {
-    await initBooks();
-  } else {
-    await showTopBooksByCategory(selectedCategory);
-    enableCategoryButtons();
-  }
-
-  dropdown.classList.remove('open');
-}
-
 categoryButtons.forEach(button => {
   button.addEventListener('click', async () => {
     const selectedCategory = button.getAttribute('data-category');
-    await handleCategoryChange(selectedCategory, button);
+
+    disableCategoryButtons();
+
+    categoryButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    bookList.innerHTML = '';
+    currentIndex = 0;
+    isInitialRender = true;
+
+    if (selectedCategory === 'all') {
+      await initBooks();
+    } else {
+      await showTopBooksByCategory(selectedCategory);
+      enableCategoryButtons();
+    }
   });
-});
-
-
-if (dropdownToggle) {
-  dropdownToggle.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
-  });
-}
-
-if (dropdownItems.length > 0) {
-  dropdownItems.forEach(item => {
-    item.addEventListener('click', async e => {
-      e.stopPropagation(); 
-      const selectedCategory = item.getAttribute('data-category');
-      await handleCategoryChange(selectedCategory);
-    });
-  });
-}
-
-
-document.addEventListener('click', e => {
-  if (
-    dropdown &&
-    !dropdown.contains(e.target) &&
-    dropdown.classList.contains('open')
-  ) {
-    dropdown.classList.remove('open');
-  }
 });
 
 showMoreBtn.addEventListener('click', renderShowMoreBtn);
