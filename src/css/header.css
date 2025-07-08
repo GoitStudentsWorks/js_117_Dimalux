@@ -3,9 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .nav-list {
@@ -13,13 +10,20 @@
 }
 
 .burger-btn {
-  padding: 0;
+  display: flex;
+  background: transparent;
   border: none;
-  background-color: transparent;
   cursor: pointer;
+
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
 }
 
 .burger-icon {
+  width: 24px;
+  height: 24px;
   fill: #0b0500;
 }
 
