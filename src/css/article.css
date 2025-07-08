@@ -1,16 +1,5 @@
-body {
-  font-family: sans-serif;
-  background-color: #fcfbe6;
-  color: #0b0500;
-}
-
 .booksy-section {
   padding: 20px 16px;
-}
-
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .booksy-content {
