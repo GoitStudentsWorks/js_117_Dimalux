@@ -1,5 +1,5 @@
 /* Мобайл */
-html, body {
+/* html, body {
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 18px;
@@ -8,20 +8,31 @@ html, body {
   margin: 0;
   padding: 0;
   background: #f7ede7;
-}
+} */
 
+/* ===== Location Section Styles ===== */
 .location-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px 0 24px 0;
   width: 100%;
+  padding: 16px 0 24px;
+  background-color: var(--color-scheme-1-bg); /* Додано для консистентності */
 }
 
 .container {
   width: 100%;
   max-width: 100vw;
+  margin: 0 auto;
+}
+
+.location-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
   padding: 0 16px;
+}
+
+/* Content Block */
+.location-content {
+  width: 100%;
 }
 
 .location-label {
@@ -37,7 +48,7 @@ html, body {
 .location-title {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 48px;
+  font-size: 32px;
   line-height: 120%;
   letter-spacing: -0.01em;
   color: var(--color-scheme-1-text);
@@ -48,10 +59,15 @@ html, body {
 .location-desc {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 150%;
   color: var(--color-scheme-1-text);
-  margin-bottom: 24px;
+  margin-bottom: 0;
+}
+
+/* Contacts Block */
+.contacts-wrapper {
+  width: 100%;
 }
 
 .contact-list {
@@ -62,144 +78,118 @@ html, body {
 
 .contact-list li {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 20px;
+  font-size: 16px;
   line-height: 140%;
   color: var(--color-scheme-1-text);
 }
 
 .contact-list .icon {
-  margin-right: 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 }
 
 .contact-label {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 140%;
-  letter-spacing: -0.01em;
-  color: var(--color-scheme-1-text);
+  font-weight: 500;
+  min-width: 60px;
   margin-right: 8px;
-  min-width: 48px;
 }
 
 .contact-link {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 150%;
-  color: var(--color-scheme-1-text);
   text-decoration: underline;
-  margin-left: 4px;
+  color: var(--color-scheme-1-text);
   transition: color 0.2s;
 }
 
 .contact-link:hover {
-  color: #8b5c2b;
+  color: var(--color-accent);
 }
 
+/* Map Block */
 .location-map {
   width: 100%;
-  max-width: 100vw;
-  margin-top: 16px;
+  margin-top: 24px;
   border-radius: 8px;
   overflow: hidden;
-  padding: 0 16px;
 }
 
 .location-map iframe {
-  width: 343px;
-  height: 395px;
+  width: 100%;
+  height: 300px;
   border: 0;
-  border-radius: 8px;
+  display: block;
 }
 
-/* Планшет */
-@media (min-width: 601px) {
+/* ===== Tablet Styles (768px+) ===== */
+@media (min-width: 768px) {
   .location-section {
-    padding: 24px 0 40px 0;
+    padding: 24px 0 40px;
+  }
+
+  .location-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
+    gap: 40px;
+    padding: 0 24px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  
+
   .location-content {
-    max-width: 50%;
-    padding: 0 24px;
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
   }
-  
+
+  .contacts-wrapper {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+
   .location-title {
-    font-size: 48px;
+    font-size: 40px;
   }
-  
-  .contact-list {
-    position: absolute;
-    right: 24px;
-    top: 0;
-    max-width: 45%;
+
+  .location-desc {
+    font-size: 18px;
   }
-  
-  .location-map {
-    max-width: 90vw;
-    margin-top: 24px;
-    padding: 0 24px;
-    width: 100%;
-  }
-  
-  .location-map iframe {
-    width: 704px;
-    height: 395px;
-  }
-  
+
   .contact-list li {
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .location-map {
+    margin-top: 40px;
+  }
+
+  .location-map iframe {
+    height: 400px;
   }
 }
 
-/* Десктоп */
-@media (min-width: 901px) {
+/* ===== Desktop Styles (1440px+) ===== */
+@media (min-width: 1440px) {
   .location-section {
-    padding: 40px 0 60px 0;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
+    padding: 40px 0 60px;
   }
-  
-  .location-content {
-    max-width: 50%;
+
+  .location-container {
     padding: 0 32px;
   }
-  
-  .contact-list {
-    position: absolute;
-    right: 32px;
-    top: 0;
-    max-width: 45%;
-  }
-  
+
   .location-title {
     font-size: 48px;
   }
-  
-  .location-map {
-    max-width: 90vw;
-    margin-top: 32px;
-    padding: 0 32px;
-  }
-  
+
   .location-map iframe {
-    width: 1312px;
-    height: 738px;
+    height: 500px;
   }
 }
