@@ -2,6 +2,12 @@
   padding: 20px 16px;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .booksy-content {
   display: flex;
   flex-direction: column;
@@ -35,19 +41,13 @@
   display: block;
   border-radius: 8px;
   object-fit: cover;
+  aspect-ratio: 16 / 9;
 }
 
-/* Tablet (≥ 768px) */
-@media (min-width: 768px) {
+/* Планшет — лише розміри шрифтів, flex лишається колонкою */
+@media (min-width: 768px) and (max-width: 1439px) {
   .booksy-section {
     padding: 40px 20px;
-  }
-
-  .booksy-content {
-    flex-direction: row;
-    text-align: left;
-    align-items: center;
-    gap: 40px;
   }
 
   .booksy-text h1 {
@@ -58,6 +58,20 @@
     font-size: 15px;
   }
 
+  .booksy-photo {
+    aspect-ratio: auto;
+  }
+}
+
+/* Десктоп (від 1440px) — зображення поруч */
+@media (min-width: 1440px) {
+  .booksy-content {
+    flex-direction: row; /* ❗ Тільки тут зображення стає збоку */
+    text-align: left;
+    align-items: center;
+    gap: 40px;
+  }
+
   .booksy-text {
     flex: 1;
   }
@@ -65,10 +79,7 @@
   .booksy-image {
     flex: 1;
   }
-}
 
-/* Desktop (≥ 1440px) */
-@media (min-width: 1440px) {
   .booksy-text h1 {
     font-size: 28px;
   }
