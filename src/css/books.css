@@ -217,9 +217,9 @@
 }
 
 @media (max-width: 1024px) {
-  .container {
+  /* .container {
     padding: 0 32px 32px 32px;
-  }
+  } */
 
   .layout {
     flex-direction: column;
@@ -258,9 +258,9 @@
 }
 
 @media (max-width: 768px) {
-  .container {
+  /*.container {
     padding: 0 16px 32px 16px;
-  }
+  } */
 
   .book-list {
     grid-template-columns: repeat(2, 1fr);

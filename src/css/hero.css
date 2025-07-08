@@ -80,26 +80,28 @@
   height: 48px;
   flex-shrink: 0;
   cursor: pointer;
+  border-radius: 2px;
   background-color: #e15d05;
   transition: background-color 0.3s ease;
 }
 
-.arrows {
-  fill: #0b0500;
-}
-
-.swiper-btn:hover {
+.swiper-btn:hover,
+.swiper-btn:focus {
   background-color: #fceee6;
 }
 
-.swiper-btn:active {
+.swiper-btn.active {
   background-color: #5a2502;
 }
 
-.swiper-btn:disabled {
+.swiper-btn.disabled {
   background-color: #e15d05;
   opacity: 0.2;
   pointer-events: none;
+}
+
+.arrows {
+  fill: #0b0500;
 }
 
 /* ---------- Слайдер ---------- */
