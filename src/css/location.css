@@ -1,26 +1,8 @@
-/* Мобайл */
-/* html, body {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 150%;
-  color: var(--color-scheme-1-text);
-  margin: 0;
-  padding: 0;
-  background: #f7ede7;
-} */
-
 /* ===== Location Section Styles ===== */
 .location-section {
   width: 100%;
   padding: 16px 0 24px;
-  background-color: var(--color-scheme-1-bg); /* Додано для консистентності */
-}
-
-.container {
-  width: 100%;
-  max-width: 100vw;
-  margin: 0 auto;
+  background-color: var(--color-scheme-1-bg);
 }
 
 .location-container {
@@ -28,6 +10,8 @@
   flex-direction: column;
   gap: 24px;
   padding: 0 16px;
+  max-width: 100vw;
+  margin: 0 auto;
 }
 
 /* Content Block */
@@ -140,7 +124,6 @@
     gap: 40px;
     padding: 0 24px;
     max-width: 1200px;
-    margin: 0 auto;
   }
 
   .location-content {
@@ -163,7 +146,6 @@
 
   .contact-list li {
     font-size: 18px;
-    margin-bottom: 24px;
   }
 
   .location-map {

@@ -16,6 +16,7 @@
     align-items: center;
     width: 100%;
     display: flex;
+    padding-bottom: 80px;
 }
 
 .footer-logo {
