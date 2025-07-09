@@ -1,8 +1,8 @@
 import Swiper from 'swiper';
 import 'swiper/css';
-import { Navigation, Pagination } from 'swiper/modules';
-// import 'swiper/css/navigation';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 import 'swiper/css/pagination';
+import 'swiper/css/keyboard';
 
 const slides = [
   {
@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   requestAnimationFrame(() => {
     swiper = new Swiper('.swiper-gallery', {
-      modules: [Navigation, Pagination],
+      modules: [Navigation, Pagination, Keyboard],
       slidesPerView: 1,
       loop: false,
       allowTouchMove: true,
@@ -123,6 +123,10 @@ window.addEventListener('DOMContentLoaded', () => {
       navigation: {
         nextEl: nextBtn,
         prevEl: prevBtn,
+      },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
       },
       on: {
         init: () => {
