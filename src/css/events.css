@@ -1,3 +1,31 @@
+/* Base styles */
+.container {
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 375px) {
+  .container {
+    max-width: 375px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1440px;
+    padding: 0 60px;
+  }
+}
+
 .events {
   margin-bottom: 128px;
 }
@@ -19,7 +47,6 @@
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: #0b0500;
-  width: 343px;
   margin-bottom: 16px;
 }
 
@@ -29,7 +56,6 @@
   font-size: 18px;
   line-height: 1.5;
   color: #0b0500;
-  width: 343px;
   margin-bottom: 32px;
 }
 
@@ -37,18 +63,25 @@
   list-style: none;
   position: relative;
   margin-bottom: 56px;
+  padding: 0;
 }
 
 .events-item {
-  width: 343px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .events-image {
-  width: 342px;
+  width: 100%;
+  max-width: 342px;
   height: 277px;
   border-radius: 16px;
   object-fit: cover;
   margin-bottom: 24px;
+}
+
+.events-content {
+  width: 100%;
 }
 
 .events-name {
@@ -58,6 +91,7 @@
   line-height: 1.4;
   letter-spacing: -0.01em;
   color: #0b0500;
+  margin-bottom: 8px;
 }
 
 .events-meta {
@@ -76,44 +110,6 @@
   line-height: 1.5;
   color: #0b0500;
   margin-bottom: 24px;
-}
-
-/* Tablet version */
-@media screen and (min-width: 768px) {
-  .events-item:nth-child(2) .events-text,
-  .events-item:nth-child(3) .events-text {
-    margin-bottom: 58px;
-  }
-}
-
-/* Desktop version */
-@media screen and (min-width: 1440px) {
-  .events-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
-
-  .events-item {
-    width: 100%;
-  }
-
-  .events-item:nth-child(3) {
-    display: block;
-  }
-
-  .events-image {
-    width: 421px;
-    height: 277px;
-  }
-
-  .events-item:nth-child(3) .events-text {
-    margin-bottom: 82px;
-  }
-
-  .events-navigation {
-    display: none;
-  }
 }
 
 .events-register {
@@ -237,7 +233,7 @@
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.293 17.293L12.707 18.707L19.414 12L12.707 5.29297L11.293 6.70697L15.586 11H6V13H15.586L11.293 17.293Z' fill='%230b0500' /%3E%3C/svg%3E") !important;
 }
 
-/* Приховуємо інші елементи слайдера */
+/* Hide other slider items */
 .events-item:not(:first-child) {
   display: none;
 }
@@ -245,6 +241,7 @@
 /* Tablet version */
 @media screen and (min-width: 768px) {
   .events-title {
+    font-size: 48px;
     white-space: nowrap;
   }
 
@@ -252,9 +249,8 @@
     display: none;
   }
 
-  .events-description {
-    width: 560px;
-    height: 54px;
+  .events-description br {
+    display: none;
   }
 
   .events-list {
@@ -268,12 +264,16 @@
     width: 100%;
   }
 
+  .events-item:nth-child(2) {
+    display: block;
+  }
+
   .events-item:nth-child(3) {
     display: none;
   }
 
   .events-image {
-    width: 100%;
+    max-width: 100%;
     height: 277px;
   }
 
@@ -294,15 +294,9 @@
 /* Desktop version - 1440px and above */
 @media screen and (min-width: 1440px) {
   .events-title {
-    width: auto;
     font-size: 48px;
     line-height: 1.2;
     letter-spacing: -0.01em;
-  }
-
-  .events-description {
-    width: auto;
-    height: auto;
   }
 
   .events-list {
@@ -320,7 +314,8 @@
   }
 
   .events-image {
-    width: 421px;
+    width: 100%;
+    max-width: 421px;
     height: 277px;
   }
 
@@ -443,6 +438,7 @@
   font-size: 16px;
   color: #0b0500;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .form-group input {
@@ -506,22 +502,10 @@
     padding: 40px;
   }
   .modal-title {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 600;
     font-size: 48px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #0b0500;
   }
   .modal-event-name {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 400;
     font-size: 24px;
-    line-height: 1.4;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #0b0500;
   }
   .modal-submit {
     width: 342px;
@@ -535,15 +519,6 @@
   .modal-content-form {
     max-width: 600px;
     padding: 48px;
-  }
-  .modal-title {
-    font-family: 'Rubik', sans-serif;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    text-align: center;
-    color: #0b0500;
   }
   .modal-submit {
     width: 342px;
