@@ -1,7 +1,7 @@
 /* ---------- Hero ---------- */
 
 .hero {
-  margin-bottom: 64px;
+  margin: 0 auto 32px;
 }
 
 .hero-container {
@@ -80,28 +80,26 @@
   height: 48px;
   flex-shrink: 0;
   cursor: pointer;
-  border-radius: 2px;
   background-color: #e15d05;
   transition: background-color 0.3s ease;
 }
 
-.swiper-btn:hover,
-.swiper-btn:focus {
+.arrows {
+  fill: #0b0500;
+}
+
+.swiper-btn:hover {
   background-color: #fceee6;
 }
 
-.swiper-btn.active {
+.swiper-btn:active {
   background-color: #5a2502;
 }
 
-.swiper-btn.disabled {
+.swiper-btn:disabled {
   background-color: #e15d05;
   opacity: 0.2;
   pointer-events: none;
-}
-
-.arrows {
-  fill: #0b0500;
 }
 
 /* ---------- Слайдер ---------- */
@@ -187,7 +185,7 @@
   letter-spacing: -0.01em;
   color: #fff;
   width: 100%;
-  max-width: 203px;
+  max-width: 228px;
 }
 
 @media screen and (min-width: 768px) {
@@ -208,13 +206,13 @@
 }
 
 .hero-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   border: 0.52px solid #e15d05;
   border-radius: 2px;
+  padding: 4px 10px;
   width: 117px;
   height: 20px;
+  font-weight: 400;
   font-size: 8px;
   line-height: 1.5;
   color: #fff;
