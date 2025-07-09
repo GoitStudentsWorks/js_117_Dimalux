@@ -93,9 +93,11 @@ function renderBooks() {
 }
 
 async function renderShowMoreBtn() {
+  enableLoader();
   hideShowMoreBtn();
   renderBooks();
   showShowMoreBtn();
+  disableLoader();
 }
 // #endregion
 
