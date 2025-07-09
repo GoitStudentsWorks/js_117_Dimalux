@@ -3,6 +3,9 @@ import 'accordion-js/dist/accordion.min.css';
 import { getBookDetails } from './api';
 import '../css/modal-window.css';
 
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+
 // console.log('Modal script подключился!');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -130,6 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function buyNow(e) {
     e.preventDefault();
-    alert('Дякуємо за покупку');
+    iziToast.success({
+      title: 'Дякуємо за замовлення!',
+      // message: 'Ваше замовлення прийнято',
+      position: 'topRight',
+      timeout: 3000,
+      titleColor: '#000',
+      titleSize: '16px',
+      titleLineHeight: '1.5',
+      progressBarColor: '#b44a04',
+      color: '#ea8d50',
+      transitionIn: 'fadeInDown',
+    });
   }
 });
