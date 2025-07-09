@@ -25,6 +25,9 @@
 .burger-icon {
   fill: var(--color-scheme-1-text);
 }
+.nav-link:hover {
+  opacity: 0.2;
+}
 
 /* === Мобильное меню === */
 .mobile-menu {

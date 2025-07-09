@@ -83,6 +83,11 @@
 
 .location-map {
   border: none;
+  filter: grayscale(100%) brightness(110%);
+}
+
+div#mapDiv {
+  filter: grayscale(95%) brightness(110%);
 }
 
 /* Планшет */
