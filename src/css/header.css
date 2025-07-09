@@ -5,26 +5,25 @@
   justify-content: space-between;
 }
 
-.nav-list {
-  display: none;
+.header-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 14px 0 14px 0;
+  width: 84px;
+  height: 36px;
 }
 
 .burger-btn {
-  display: flex;
+  padding: 0;
+
   background: transparent;
   border: none;
-  cursor: pointer;
-
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
 }
 
 .burger-icon {
-  width: 24px;
-  height: 24px;
-  fill: #0b0500;
+  fill: var(--color-scheme-1-text);
 }
 
 /* === Мобильное меню === */
@@ -53,44 +52,64 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 16px 20px;
+  padding: 0 20px;
 }
 
 .mobile-menu-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .close-btn {
-  background: none;
+  padding: 0;
+  margin-right: 4px;
+
   border: none;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 8px;
+  height: 24px;
+  width: 24px;
+  background: transparent;
 }
 
 .mobile-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-top: 14px;
+  align-items: center;
+  row-gap: 40px;
   padding: 0;
   list-style: none;
 }
 
 .mobile-nav-link {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
-  color: #0b0500;
   text-decoration: none;
+}
+
+/* === Мобилка и ниже === */
+@media screen and (max-width: 767px) {
+  .header-nav-list {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .header-container {
+    padding: 0 20px;
+  }
 }
 
 /* === Планшет и выше === */
 @media screen and (min-width: 768px) {
-  .header-container {
-    padding: 16px 32px;
+  .header-logo {
+    margin: 18px 0 18px 0;
   }
 
   .nav-menu {
@@ -99,36 +118,21 @@
     width: 100%;
   }
 
-  .nav-list {
+  .header-nav-list {
     display: flex;
-    gap: 32px;
+    column-gap: 32px;
     margin-left: auto; /* Отправляем список вправо */
   }
 
-  .nav-link {
-    padding: 24px 0;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #0b0500;
-  }
-
   .burger-btn {
-    display: none;
-  }
-
-  .mobile-menu-container {
-    padding: 16px 32px;
-  }
-}
-
-/* === Десктоп === */
-@media screen and (min-width: 1440px) {
-  .header-container {
-    padding: 16px 64px;
-  }
-
-  .mobile-menu-container {
-    padding: 16px 64px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }

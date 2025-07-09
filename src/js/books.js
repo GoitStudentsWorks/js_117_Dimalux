@@ -8,7 +8,11 @@ const bookList = document.getElementById('book-list');
 const showMoreBtn = document.getElementById('show-more-btn');
 const showingCountSpan = document.getElementById('showing-count');
 const totalCountSpan = document.getElementById('total-count');
+
+const categorySelector = document.getElementById('book-category-selector');
 const categoryButtons = document.querySelectorAll('.book-category-btn');
+
+const loader = document.querySelector(".loader");
 
 let allBooks = [];
 let currentIndex = 0;
@@ -18,6 +22,24 @@ let isInitialRender = true;
 
 // #region Для рендеринга.
 
+// #region Лоадер.
+function disableLoader() {
+  loader.classList.add("book-visually-hidden");
+}
+function enableLoader() {
+  loader.classList.remove("book-visually-hidden");
+}
+// #endregion
+
+// #region Селектор категорий.
+function disableCategorySelector() {
+  categorySelector.disabled = true;
+}
+function enableCategorySelector() {
+  categorySelector.disabled = false;
+}
+// #endregion
+
 // #region Кнопки категорий.
 function disableCategoryButtons() {
   categoryButtons.forEach(btn => btn.disabled = true);
@@ -26,6 +48,7 @@ function enableCategoryButtons() {
   categoryButtons.forEach(btn => btn.disabled = false);
 }
 // #endregion
+
 // #region Кнопка Show More.
 function showShowMoreBtn() {
   showMoreBtn.classList.remove("book-visually-hidden");
@@ -46,12 +69,14 @@ function renderBooks() {
     const li = document.createElement('li');
     li.classList.add('book-card');
     li.innerHTML = `
-      <img src="${book.book_image}" alt="${book.title}" />
+      <img class="book-image" src="${book.book_image}" alt="${book.title}" />
       <div class="book-info">
-        <h4 class="book-title">${book.title}</h4>
-        <p class="book-author">${book.author}</p>
+        <div class="book-subinfo">
+          <h4 class="book-title">${book.title}</h4>
+          <p class="book-author">${book.author}</p>
+        </div>
+        <p class="book-price">$${book.price ?? 'N/A'}</p>
       </div>
-      <p class="book-price">$${book.price ?? 'N/A'}</p>
       <button class="book-learn-btn" data-id="${book._id}">Learn More</button>
     `;
     bookList.appendChild(li);
@@ -110,6 +135,7 @@ async function showTopBooksByCategory(category) {
 
 async function initBooks() {
   showMoreBtn.classList.add("book-visually-hidden");
+  disableCategorySelector();
   disableCategoryButtons();
 
   // Получаем топ книги
@@ -152,11 +178,36 @@ async function initBooks() {
   }
 
   enableCategoryButtons();
+  enableCategorySelector();
+
+  disableLoader();
 }
 // #endregion
 
+// #region Выбор категории селектором.
+categorySelector.addEventListener('change', async () => {
+  enableLoader();
+
+  const selectedCategory = categorySelector.value;
+
+  bookList.innerHTML = '';
+  currentIndex = 0;
+  isInitialRender = true;
+
+  if (selectedCategory === 'all') {
+    await initBooks();
+  } else {
+    await showTopBooksByCategory(selectedCategory);
+    enableCategorySelector();
+    disableLoader();
+  }
+});
+// #endregion
+// #region Выбор категории кнопками.
 categoryButtons.forEach(button => {
   button.addEventListener('click', async () => {
+    enableLoader();
+
     const selectedCategory = button.getAttribute('data-category');
 
     disableCategoryButtons();
@@ -173,10 +224,11 @@ categoryButtons.forEach(button => {
     } else {
       await showTopBooksByCategory(selectedCategory);
       enableCategoryButtons();
+      disableLoader();
     }
   });
 });
-
+// #endregion
 showMoreBtn.addEventListener('click', renderShowMoreBtn);
 
 initBooks();

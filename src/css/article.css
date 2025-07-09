@@ -1,84 +1,37 @@
 .booksy-section {
-  padding: 20px 16px;
+  margin-bottom: 128px;
 }
 
-.booksy-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 24px;
-}
-
-.booksy-text {
-  width: 100%;
-}
-
-.booksy-text h1 {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 12px;
+.booksy-text h2 {
+  margin-bottom: 24px;
 }
 
 .booksy-text p {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.booksy-image {
-  width: 100%;
+  font-size: 18px;
+  margin-bottom: 32px;
 }
 
 .booksy-photo {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-/* Tablet (≥ 768px) */
-@media (min-width: 768px) {
-  .booksy-section {
-    padding: 40px 20px;
-  }
-
-  .booksy-content {
-    flex-direction: row;
-    text-align: left;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .booksy-text h1 {
-    font-size: 24px;
-  }
-
-  .booksy-text p {
-    font-size: 15px;
-  }
-
-  .booksy-text {
-    flex: 1;
-  }
-
-  .booksy-image {
-    flex: 1;
-  }
+  border-radius: 16px;
 }
 
 /* Desktop (≥ 1440px) */
 @media (min-width: 1440px) {
-  .booksy-text h1 {
-    font-size: 28px;
+  .booksy-content {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+  }
+
+  .booksy-text h2 {
+    font-size: 40px;
   }
 
   .booksy-text p {
-    font-size: 16px;
-    max-width: 600px;
+    margin-bottom: 0;
   }
-
-  .booksy-photo {
-    border-radius: 12px;
+  
+  .booksy-image {
+    flex-shrink: 0;
   }
 }

@@ -1,7 +1,7 @@
 /* ---------- Hero ---------- */
 
 .hero {
-  margin: 0 auto 32px;
+  margin-bottom: 64px;
 }
 
 .hero-container {
@@ -187,7 +187,7 @@
   letter-spacing: -0.01em;
   color: #fff;
   width: 100%;
-  max-width: 228px;
+  max-width: 203px;
 }
 
 @media screen and (min-width: 768px) {
@@ -208,13 +208,13 @@
 }
 
 .hero-btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 0.52px solid #e15d05;
   border-radius: 2px;
-  padding: 4px 10px;
   width: 117px;
   height: 20px;
-  font-weight: 400;
   font-size: 8px;
   line-height: 1.5;
   color: #fff;
