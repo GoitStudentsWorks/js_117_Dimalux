@@ -12,6 +12,17 @@
                     </p>
                 </div>
 
+                <select class="book-category-selector" id="book-category-selector">
+                    <option value="all">All categories</option>
+                    <option value="Combined Print and E-Book Fiction">Combined Print and E-book Fiction</option>
+                    <option value="Combined Print & E-book Nonfiction">Combined Print & E-book Nonfiction</option>
+                    <option value="Hardcover fiction">Hardcover fiction</option>
+                    <option value="Paperback trade fiction">Paperback trade fiction</option>
+                    <option value="Paperback nonfiction">Paperback nonfiction</option>
+                    <option value="Advice, how-to & Miscellaneous">Advice, how-to & Miscellaneous</option>
+                    <option value="Children's middle grade hardcover">Children's middle grade hardcover</option>
+                </select>
+
                 <ul class="book-categories">
                     <li>
                         <button class="book-category-btn active" data-category="all">
@@ -62,6 +73,8 @@
                 <button class="show-more-btn" id="show-more-btn" type="button">
                     Show More
                 </button>
+
+                <span class="loader"></span>
             </div>
         </div>
     </div>

@@ -193,3 +193,6 @@ document.getElementById('modalForm').addEventListener('submit', function(event) 
 
 // Запускаємо при завантаженні сторінки
 updateDisplay();
+
+
+// Зачем всё это? Буквально же в API свайпера есть штука для разного вьюпорта...
